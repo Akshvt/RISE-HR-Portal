@@ -1,0 +1,14 @@
+[
+  { "id": "hol-2026-01-26", "name": "Republic Day", "date": "2026-01-26" },
+  { "id": "hol-2026-03-25", "name": "Holi", "date": "2026-03-25" },
+  { "id": "hol-2026-04-14", "name": "Ambedkar Jayanti", "date": "2026-04-14" },
+  { "id": "hol-2026-04-17", "name": "Good Friday", "date": "2026-04-17" },
+  { "id": "hol-2026-05-01", "name": "Labour Day", "date": "2026-05-01" },
+  { "id": "hol-2026-08-15", "name": "Independence Day", "date": "2026-08-15" },
+  { "id": "hol-2026-08-27", "name": "Janmashtami", "date": "2026-08-27" },
+  { "id": "hol-2026-10-02", "name": "Gandhi Jayanti", "date": "2026-10-02" },
+  { "id": "hol-2026-10-20", "name": "Dussehra", "date": "2026-10-20" },
+  { "id": "hol-2026-11-09", "name": "Diwali", "date": "2026-11-09" },
+  { "id": "hol-2026-11-15", "name": "Guru Nanak Jayanti", "date": "2026-11-15" },
+  { "id": "hol-2026-12-25", "name": "Christmas", "date": "2026-12-25" }
+]
