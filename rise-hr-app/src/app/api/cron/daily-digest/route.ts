@@ -2,12 +2,12 @@ import { NextResponse } from 'next/server'
 import { supabaseAdmin } from '@/lib/supabase'
 import { sendEmail } from '@/lib/mailer'
 import { getTeamMembers } from '@/lib/airtable'
-import { isSunday, format, parseISO, differenceInYears } from 'date-fns'
+import { isSunday, format, parseISO, differenceInYears, addDays } from 'date-fns'
 import { INDIA_HOLIDAYS_2026 } from '@/lib/utils'
 
 export async function GET(request: Request) {
   const authHeader = request.headers.get('authorization')
-  if (process.env.CRON_SECRET && authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
+  if (!process.env.CRON_SECRET || authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 
@@ -57,7 +57,24 @@ export async function GET(request: Request) {
     else pto.push(l.employee_name)
   })
 
-  const returning = (leaves || []).filter(l => l.end_date === todayStr).map(l => l.employee_name)
+  let nextWorkingDay = addDays(today, 1)
+  while (isSunday(nextWorkingDay) || INDIA_HOLIDAYS_2026.includes(format(nextWorkingDay, 'yyyy-MM-dd'))) {
+    nextWorkingDay = addDays(nextWorkingDay, 1)
+  }
+  const nextWorkingDayStr = format(nextWorkingDay, 'yyyy-MM-dd')
+
+  const { data: nextLeaves } = await supabaseAdmin
+    .from('leave_requests')
+    .select('employee_name')
+    .eq('status', 'approved')
+    .lte('start_date', nextWorkingDayStr)
+    .gte('end_date', nextWorkingDayStr)
+
+  const nextLeavesNames = new Set(nextLeaves?.map(l => l.employee_name) || [])
+
+  const returning = (leaves || [])
+    .filter(l => l.end_date === todayStr && !nextLeavesNames.has(l.employee_name))
+    .map(l => l.employee_name)
 
   // 5. EMAIL COMPOSITION
   let body = `<div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #1a2e24; line-height: 1.6; max-width: 600px; margin: 0 auto; border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);">`
@@ -105,7 +122,7 @@ export async function GET(request: Request) {
   // Section: Returning
   if (returning.length > 0) {
     body += `<div style="margin-top: 24px; padding-top: 16px; border-top: 1px dashed #e2e8f0;">`
-    body += `<p style="color: #64748b; font-size: 13px; margin: 0;">🔔 <strong>Returning Tomorrow:</strong> ${returning.join(', ')}</p>`
+    body += `<p style="color: #64748b; font-size: 13px; margin: 0;">🔔 <strong>Returning on ${format(nextWorkingDay, 'EEEE')}:</strong> ${returning.join(', ')}</p>`
     body += `</div>`
   }
 

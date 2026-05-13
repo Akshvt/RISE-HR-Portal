@@ -123,6 +123,11 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: insertError.message }, { status: 500 })
   }
 
+  // TODO: ATOMICITY RISK (Distributed Transaction)
+  // If this upsert fails after the leave_requests insert above succeeds, the database is left in a corrupted state
+  // (leave is approved but balance is not deducted).
+  // Fix: Migrate this logic to a Supabase Postgres RPC (Stored Procedure) to wrap both operations in a single transaction.
+  
   // Update leave_balances table
   const balanceField = leaveType === 'wfh' ? 'wfh_taken' : 'pto_taken'
   const newValue = (leaveType === 'wfh' ? wfhTaken : ptoTaken) + daysDeducted
