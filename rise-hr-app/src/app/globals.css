@@ -7,29 +7,37 @@
   --brand-green-light: #2b9e6e;
   --brand-green-dim: rgba(28, 124, 84, 0.1);
 
-  /* Backgrounds */
+  /* Backgrounds - Warm & Branded */
   --bg-deep: #FBF8EF;
+  /* Your Cream color */
   --bg-base: #FBF8EF;
   --surface-low: #F5FDE5;
+  /* Your Lime color */
   --surface-mid: #FFFFFF;
   --surface-high: #FFFFFF;
-  
-  /* Text */
-  --text-primary: #000000;
-  --text-secondary: rgba(0, 0, 0, 0.65);
-  --text-muted: rgba(0, 0, 0, 0.45);
-  
-  /* UI Borders */
-  --border-subtle: rgba(0, 0, 0, 0.08);
-  --border-strong: rgba(0, 0, 0, 0.15);
+
+  /* Text - High Contrast Green-Tinted */
+  --text-primary: #0A2E1F;
+  --text-secondary: #2D4A3E;
+  --text-muted: #5C7A6D;
+
+  /* UI Borders - Richer Green Tints */
+  --border-subtle: rgba(28, 124, 84, 0.15);
+  --border-strong: rgba(28, 124, 84, 0.3);
+
+  /* Highlights */
+  --employee-accent: #F5FDE5;
+  --shadow-sm: 0 1px 2px rgba(28, 124, 84, 0.05);
+  --shadow-md: 0 4px 12px rgba(28, 124, 84, 0.08);
+  --shadow-lg: 0 12px 24px -4px rgba(28, 124, 84, 0.15);
 
   /* Status */
   --status-approved: #1C7C54;
-  --status-approved-bg: rgba(28, 124, 84, 0.12);
-  --status-pending: #d97706;
-  --status-pending-bg: rgba(217, 119, 6, 0.12);
-  --status-rejected: #dc2626;
-  --status-rejected-bg: rgba(220, 38, 38, 0.12);
+  --status-approved-bg: #F5FDE5;
+  --status-pending: #B45309;
+  --status-pending-bg: #FEF3C7;
+  --status-rejected: #991B1B;
+  --status-rejected-bg: #FEE2E2;
 
   /* Leave type colors */
   --leave-pto: rgba(37, 99, 235, 0.9);
@@ -45,32 +53,45 @@
 }
 
 .dark {
-  /* Dark Mode Variables */
+  /* Dark Mode - Branded Deep Tones */
   --brand-green: #2b9e6e;
   --brand-green-light: #43b887;
   --brand-green-dim: rgba(43, 158, 110, 0.15);
 
-  --bg-deep: #0f1110;
-  --bg-base: #0f1110;
-  --surface-low: #161817;
-  --surface-mid: #1d201e;
-  --surface-high: #262927;
-  
-  --text-primary: #FFFFFF;
-  --text-secondary: rgba(255, 255, 255, 0.8);
-  --text-muted: rgba(255, 255, 255, 0.55);
-  
-  --border-subtle: rgba(255, 255, 255, 0.08);
-  --border-strong: rgba(255, 255, 255, 0.15);
+  --bg-deep: #0D110F;
+  --bg-base: #0D110F;
+  --surface-low: #151A18;
+  --surface-mid: #1C2420;
+  --surface-high: #242D28;
+
+  --text-primary: #FBF8EF;
+  /* Using your Cream for text in dark mode */
+  --text-secondary: rgba(251, 248, 239, 0.85);
+  --text-muted: rgba(251, 248, 239, 0.6);
+
+  --border-subtle: rgba(245, 253, 229, 0.1);
+  /* Using your Lime tint for borders */
+  --border-strong: rgba(245, 253, 229, 0.2);
 
   --status-approved: #4ade80;
   --status-pending: #fbbf24;
   --status-rejected: #f87171;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 12px 24px -4px rgba(0, 0, 0, 0.8);
 }
 
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-html, body {
+html,
+body {
   font-family: 'Red Hat Display', sans-serif;
   background: var(--bg-deep);
   color: var(--text-primary);
@@ -84,9 +105,11 @@ html, body {
   animation: none;
   mix-blend-mode: normal;
 }
+
 ::view-transition-old(root) {
   z-index: 1;
 }
+
 ::view-transition-new(root) {
   z-index: 9999;
 }
@@ -122,16 +145,30 @@ html, body {
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.025);
   transition: box-shadow 200ms ease, border-color 200ms ease;
 }
+
 .glass-card:hover {
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
   border-color: var(--border-strong);
 }
 
 /* ── Scrollbar ── */
-::-webkit-scrollbar { width: 6px; height: 6px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.15); border-radius: 99px; }
-::-webkit-scrollbar-thumb:hover { background: rgba(0,0,0,0.25); }
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 99px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.25);
+}
 
 /* ── Buttons ── */
 .btn-gold {
@@ -148,8 +185,15 @@ html, body {
   cursor: pointer;
   transition: background 150ms ease, transform 150ms ease;
 }
-.btn-gold:hover { background: var(--brand-green-light); transform: translateY(-1px); }
-.btn-gold:active { transform: translateY(0); }
+
+.btn-gold:hover {
+  background: var(--brand-green-light);
+  transform: translateY(-1px);
+}
+
+.btn-gold:active {
+  transform: translateY(0);
+}
 
 .btn-glass {
   display: inline-flex;
@@ -165,23 +209,90 @@ html, body {
   cursor: pointer;
   transition: background 150ms ease, border-color 150ms ease, box-shadow 150ms ease;
 }
-.btn-glass:hover { background: var(--surface-low); border-color: var(--border-strong); box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+
+.btn-glass:hover {
+  background: var(--surface-low);
+  border-color: var(--border-strong);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
 
 /* ── Status pills ── */
-.pill { display: inline-flex; align-items: center; gap: 5px; padding: 3px 10px; border-radius: 99px; font-size: 12px; font-weight: 600; }
-.pill-approved { background: var(--status-approved-bg); color: var(--status-approved); border: 1px solid rgba(28, 124, 84, 0.25); }
-.pill-pending { background: var(--status-pending-bg); color: var(--status-pending); border: 1px solid rgba(217, 119, 6, 0.25); }
-.pill-rejected { background: var(--status-rejected-bg); color: var(--status-rejected); border: 1px solid rgba(220, 38, 38, 0.25); }
-.pill-admin { background: var(--brand-green-dim); color: var(--brand-green); border: 1px solid rgba(28, 124, 84, 0.25); }
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px;
+  border-radius: 99px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.pill-approved {
+  background: var(--status-approved-bg);
+  color: var(--status-approved);
+  border: 1px solid rgba(28, 124, 84, 0.25);
+}
+
+.pill-pending {
+  background: var(--status-pending-bg);
+  color: var(--status-pending);
+  border: 1px solid rgba(217, 119, 6, 0.25);
+}
+
+.pill-rejected {
+  background: var(--status-rejected-bg);
+  color: var(--status-rejected);
+  border: 1px solid rgba(220, 38, 38, 0.25);
+}
+
+.pill-admin {
+  background: var(--brand-green-dim);
+  color: var(--brand-green);
+  border: 1px solid rgba(28, 124, 84, 0.25);
+}
 
 /* ── Leave type pills ── */
-.leave-pto   { background: var(--leave-pto-bg);     color: var(--leave-pto);   border: 1px solid rgba(37, 99, 235, 0.3); }
-.leave-wfh   { background: var(--leave-wfh-bg);     color: var(--leave-wfh);   border: 1px solid rgba(5, 150, 105, 0.3); }
-.leave-sick  { background: var(--leave-sick-bg);    color: var(--leave-sick);   border: 1px solid rgba(217, 119, 6, 0.3); }
-.leave-planned { background: var(--leave-planned-bg); color: var(--leave-planned); border: 1px solid rgba(124, 58, 237, 0.3); }
-.leave-holiday { background: var(--leave-holiday-bg); color: var(--leave-holiday); border: 1px solid rgba(220, 38, 38, 0.3); }
-.leave-birthday { background: rgba(236, 72, 153, 0.12); color: #db2777; border: 1px solid rgba(236, 72, 153, 0.3); }
-.leave-anniversary { background: rgba(14, 165, 233, 0.12); color: #0284c7; border: 1px solid rgba(14, 165, 233, 0.3); }
+.leave-pto {
+  background: var(--leave-pto-bg);
+  color: var(--leave-pto);
+  border: 1px solid rgba(37, 99, 235, 0.3);
+}
+
+.leave-wfh {
+  background: var(--leave-wfh-bg);
+  color: var(--leave-wfh);
+  border: 1px solid rgba(5, 150, 105, 0.3);
+}
+
+.leave-sick {
+  background: var(--leave-sick-bg);
+  color: var(--leave-sick);
+  border: 1px solid rgba(217, 119, 6, 0.3);
+}
+
+.leave-planned {
+  background: var(--leave-planned-bg);
+  color: var(--leave-planned);
+  border: 1px solid rgba(124, 58, 237, 0.3);
+}
+
+.leave-holiday {
+  background: var(--leave-holiday-bg);
+  color: var(--leave-holiday);
+  border: 1px solid rgba(220, 38, 38, 0.3);
+}
+
+.leave-birthday {
+  background: rgba(236, 72, 153, 0.12);
+  color: #db2777;
+  border: 1px solid rgba(236, 72, 153, 0.3);
+}
+
+.leave-anniversary {
+  background: rgba(14, 165, 233, 0.12);
+  color: #0284c7;
+  border: 1px solid rgba(14, 165, 233, 0.3);
+}
 
 /* ── Inputs ── */
 .input-glass {
@@ -196,37 +307,90 @@ html, body {
   outline: none;
   transition: border-color 150ms ease, box-shadow 150ms ease;
 }
-.input-glass::placeholder { color: var(--text-muted); }
+
+.input-glass::placeholder {
+  color: var(--text-muted);
+}
+
 .input-glass:focus {
   border-color: var(--brand-green);
   box-shadow: 0 0 0 3px var(--brand-green-dim);
 }
 
 /* ── Layout ── */
-.app-shell { display: flex; min-height: 100vh; position: relative; z-index: 1; }
-.sidebar { width: 240px; flex-shrink: 0; }
-.main-content { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.app-shell {
+  display: flex;
+  min-height: 100vh;
+  position: relative;
+  z-index: 1;
+}
+
+.sidebar {
+  width: 240px;
+  flex-shrink: 0;
+}
+
+.main-content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
 
 /* ── Animations ── */
-@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
-@keyframes pulse-dot { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
-.animate-fadeIn { animation: fadeIn 250ms ease-out; }
-.pulse-dot { animation: pulse-dot 1.5s ease-in-out infinite; }
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-dot {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.4;
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 250ms ease-out;
+}
+
+.pulse-dot {
+  animation: pulse-dot 1.5s ease-in-out infinite;
+}
 
 /* ── Modal overlay ── */
 .modal-overlay {
-  position: fixed; inset: 0; z-index: 50;
-  background: rgba(0,0,0,0.4);
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(4px);
-  display: flex; align-items: center; justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   animation: fadeIn 150ms ease-out;
 }
+
 .modal-panel {
   background: var(--surface-mid);
   border: 1px solid var(--border-subtle);
   border-radius: 20px;
-  width: 100%; max-width: 560px;
-  max-height: 90vh; overflow-y: auto;
+  width: 100%;
+  max-width: 560px;
+  max-height: 90vh;
+  overflow-y: auto;
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
   animation: fadeIn 250ms ease-out;
   position: relative;

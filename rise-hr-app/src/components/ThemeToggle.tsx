@@ -66,16 +66,31 @@ export function ThemeToggle() {
     <button
       onClick={toggleTheme}
       style={{
-        background: 'none', border: 'none', cursor: 'pointer',
-        color: 'var(--text-muted)', padding: 4, borderRadius: 6,
-        display: 'flex', alignItems: 'center',
-        transition: 'color 150ms ease',
+        background: 'var(--surface-mid)',
+        border: '1px solid var(--border-subtle)',
+        cursor: 'pointer',
+        color: 'var(--text-secondary)',
+        padding: 6,
+        borderRadius: 8,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        transition: 'all 150ms ease',
+        boxShadow: 'var(--shadow-sm)',
       }}
       title={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
-      onMouseEnter={e => (e.currentTarget.style.color = 'var(--text-primary)')}
-      onMouseLeave={e => (e.currentTarget.style.color = 'var(--text-muted)')}
+      onMouseEnter={e => {
+        e.currentTarget.style.color = 'var(--text-primary)'
+        e.currentTarget.style.borderColor = 'var(--border-strong)'
+        e.currentTarget.style.background = 'var(--surface-low)'
+      }}
+      onMouseLeave={e => {
+        e.currentTarget.style.color = 'var(--text-secondary)'
+        e.currentTarget.style.borderColor = 'var(--border-subtle)'
+        e.currentTarget.style.background = 'var(--surface-mid)'
+      }}
     >
-      {isDark ? <Sun size={15} /> : <Moon size={15} />}
+      {isDark ? <Sun size={14} /> : <Moon size={14} />}
     </button>
   )
 }
