@@ -8,7 +8,6 @@
 **/.env
 **/.env.local
 **/.env.*.local
-**/vercel.json
 
 # IDEs and Editors
 .vscode/
